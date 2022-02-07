@@ -1,0 +1,25 @@
+--change color periodically
+
+
+
+--局部变量声明
+
+local colorofpart=script.Parent
+--将当前脚本的父节点设置为局部变量，前提是将该脚本绑定到目标对象下
+
+--lua语言循环体
+while true do
+	colorofpart.BrickColor=BrickColor.new(0.1,0.1,0.1)
+	wait(1)
+	colorofpart.BrickColor=BrickColor.new(0.2,0.2,0.2)
+	wait(1)
+	colorofpart.BrickColor=BrickColor.Blue()
+	wait(1)
+	colorofpart.BrickColor=BrickColor.Red()
+	wait(1)
+	colorofpart.BrickColor=BrickColor.Gray()
+	wait(1)
+end
+
+
+
