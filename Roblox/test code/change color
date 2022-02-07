@@ -6,18 +6,30 @@
 
 local colorofpart=game.Workspace.PracticePart
 
---lua语言循环体
+--lua语言循环体。
+--由
+--while true do
+--（循环体）
+--end
+--组成
+
+
 while true do
-	colorofpart.BrickColor=BrickColor.new(0.1,0.1,0.1)
-	wait(1)
+	colorofpart.BrickColor=BrickColor.new(0.1,0.1,0.1)--全局变量.颜色变化=变为一个新的颜色（颜色rbg值为x，x，x）
+	wait(1)--等待一秒
+	
 	colorofpart.BrickColor=BrickColor.new(0.2,0.2,0.2)
 	wait(1)
-	colorofpart.BrickColor=BrickColor.Blue()
+	
+	colorofpart.BrickColor=BrickColor.Blue()--全局变量.颜色变化=变成蓝色（）
 	wait(1)
+	
 	colorofpart.BrickColor=BrickColor.Red()
 	wait(1)
+	
 	colorofpart.BrickColor=BrickColor.Gray()
 	wait(1)
+	
 end
 
 
