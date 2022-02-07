@@ -4,23 +4,23 @@
 
 --局部变量声明
 
-local colorofpart=game.Workspace.PracticePart.BrickColor
+local colorofpart=game.Workspace.PracticePart
 
 --lua语言循环体
 while true do
-	colorofpart=BrickColor.new(0.1,0.1,0.1)
+	colorofpart.BrickColor=BrickColor.new(0.1,0.1,0.1)
 	wait(1)
-	colorofpart=BrickColor.new(0.2,0.2,0.2)
+	colorofpart.BrickColor=BrickColor.new(0.2,0.2,0.2)
 	wait(1)
-	colorofpart=BrickColor.Blue()
+	colorofpart.BrickColor=BrickColor.Blue()
 	wait(1)
-	colorofpart=BrickColor.Red()
+	colorofpart.BrickColor=BrickColor.Red()
 	wait(1)
-	colorofpart=BrickColor.Gray()
+	colorofpart.BrickColor=BrickColor.Gray()
 	wait(1)
 end
 
 
 
 --原函数为game.Workspace.PracticePart.BrickColor=BrickColor.new(1,0,0)
---此处将game.workspace.practicepart.brickcolor整体设置为局部变量，也可将Brickcolor去除掉，在循环体中局部变量后接
+--此处将game.workspace.practicepart整体设置为局部变量
