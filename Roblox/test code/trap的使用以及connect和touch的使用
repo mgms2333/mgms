@@ -1,0 +1,9 @@
+--https://education.roblox.com/zh-cn/resources/intro-to-coding-coding-2-parameters-and-events-1-traps
+
+local trap=script.Parent
+
+local function onTouch (objectTouch)
+	print("something touched the trap")
+	objectTouch:Destroy()
+end
+trap.Touched:Connect(onTouch)--当trap被触碰时，将触碰事件与自定义函数ontouch连接起来
