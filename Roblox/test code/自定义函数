@@ -1,4 +1,8 @@
---写一个函数，方便后续直接调用
+--写一个函数，方便后续直接调用。
+--格式为local function nameoffunction()
+--      函数体
+--      end
+
 local function printSth()
 	print("this is a function for test.")
 end      
