@@ -1,0 +1,15 @@
+
+-- Replaces Fire with Sparkles
+-- 定义局部变量firepart为当前脚本的父节点
+local firePart = script.Parent
+
+-- 定义函数stopfire并撰写函数体
+local function stopFire()
+	-- 摧毁火焰
+	firePart.Fire:Destroy()
+	-- 添加新的火花效果以代替被摧毁的火把
+	local spark=Instance.new("ParticleEmitter")--Instance为实例，特效基本上都是实例的一种。新建一个实例Sparkles并将其定义为spark
+	spark.Parent=firePart --将刚刚新建的实例（粒子发射器）的父节点定为firepart
+end
+-- 调用函数
+stopFire()
