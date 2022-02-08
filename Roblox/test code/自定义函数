@@ -9,3 +9,27 @@ end
 
 --函数体写完了，后续直接调用就可以了
 printSth()
+
+---------------------------------------------------------------------------------------------------
+
+--写一个函数，方便后续直接调用
+local function printSth()
+	print("this is a function for test.")
+end      
+
+--函数体写完了，后续直接调用就可以了
+--再来一个嵌套函数printSome用于调用三次printSth函数
+local function printSome ()
+	printSth()
+	printSth()
+	printSth()
+end
+
+--lua的循环体，while true do
+while true do
+	printSome()
+	wait(2)
+	printSome()
+	wait(2)
+	break
+end
