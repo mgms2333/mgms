@@ -1,0 +1,7 @@
+--写一个函数，方便后续直接调用
+local function printSth()
+	print("this is a function for test.")
+end      
+
+--函数体写完了，后续直接调用就可以了
+printSth()
