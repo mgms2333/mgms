@@ -1,0 +1,27 @@
+--设置局部变量buttom
+local buttom =script.Parent
+local bridge =script.Parent.Parent
+--定义函数，实现打印、按钮变色、桥体透明度更改和桥体触碰true
+local function Bridgeon()
+	print("somebody touched the button")
+	buttom.BrickColor=BrickColor.Green()
+	bridge.Transparency=0
+	bridge.CanCollide=true
+end
+--当按钮被触碰后，将按钮触碰的事件与Bridgeon函数连接起来
+buttom.Touched:Connect(Bridgeon)
+
+--改变按钮颜色的函数，使用的是一个循环
+while true do
+	bridge.BrickColor=BrickColor.Red()
+	wait (1)
+	bridge.BrickColor=BrickColor.Blue()
+	wait(1)
+	bridge.BrickColor=BrickColor.Gray()
+	wait(1)
+	bridge.BrickColor=BrickColor.Black()
+	wait(1)
+	bridge.BrickColor=BrickColor.new(0.6,0.5,0.4)
+	wait(1)
+end
+	
