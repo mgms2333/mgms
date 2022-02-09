@@ -1,0 +1,12 @@
+--用于垃圾分类的函数，垃圾被摧毁，可回收物新增闪光效果
+trashpart=game.Workspace.sortGarbage.trashPart       --定义垃圾
+recyclepart=game.Workspace.sortGarbage.recyclePart   --定义可回收物
+local function sortGarbage(trash,recyclable)         --定义函数
+	print("begin sorting trash")                       --检查函数是否正常输出
+	trash:destroy()--将trash传给destory函数摧毁
+	local sparkle=Instance.new("Sparkles")             --设置一个效果sparkle，通过新建实例来完成并赋给sparkle
+	sparkle.Parent=recyclable                          --将新效果的父节点修改为recyclable
+end
+
+--使用形参trashpart和recyclepart传入对象到函数sortGarbage中
+sortGarbage(trashpart,recyclepart)
