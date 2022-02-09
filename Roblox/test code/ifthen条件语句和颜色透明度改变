@@ -1,0 +1,21 @@
+ifthenpart=game.Workspace.ifThenPart--声明局部变量
+
+--ifthen函数，同时改变颜色和透明度
+local function ifthen()
+	ifthenpart.BrickColor=BrickColor.Red()
+	ifthenpart.Transparency=0.8
+	wait(0.1)
+	ifthenpart.BrickColor=BrickColor.Blue()
+	ifthenpart.Transparency=0.4
+	wait(0.5)
+	ifthenpart.BrickColor=BrickColor.Gray()
+	ifthenpart.Transparency=0
+	wait(0.5)
+end
+
+--一个嵌套结构，如果1+1=2那么执行一个true循环
+if 1+1==2  then
+	while true do
+		 ifthen()
+	end
+end
