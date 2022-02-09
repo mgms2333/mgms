@@ -1,0 +1,10 @@
+local part = script.Parent--局部变量
+local function fall(otherpart)--声明函数fall
+	local character = otherpart.parent--将触碰对象的父节点定义为character
+	local human = character:FindFirstChildWhichIsA("Humanoid")--将character的父节点中的humanoid筛选出来，定义为human
+	if human then--如果检测到了human，则part变色落下
+		part.BrickColor=BrickColor.Red()
+		part.Anchored=false
+	end	
+end
+part.Touched:Connect(fall)--将触碰part和函数fall连接起来
