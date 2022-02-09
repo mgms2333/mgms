@@ -1,0 +1,14 @@
+--触碰特定trap即死亡的脚本
+local trap =script.Parent--仍然是局部变量
+
+--函数体
+local function onTouch(otherPart)
+	local character = otherPart.parent                                --将触碰到part的部位声明为otherpart，将otherpart的父本声明为character
+	print("touching an object")                                       --测试脚本是否正常输出
+	local humanoid = character:FindFirstChildWhichIsA("Humanoid")     --查找character中是否有人类，有就把人类的hp设定为0
+	if humanoid then
+		humanoid.Health=0
+	end	
+end
+
+trap.Touched:Connect(onTouch)
