@@ -1,0 +1,35 @@
+--当此代码置于 StarterPlayer.StarterCharacterScripts 内的 LocalScript 中时，将允许玩家角色进行连跳。
+
+
+local UserInputService = game:GetService("UserInputService")
+local character = script.Parent
+ 
+local humanoid = character:WaitForChild("Humanoid")
+ 
+local doubleJumpEnabled = false 
+ 
+humanoid.StateChanged:Connect(function(oldState, newState)
+	if newState == Enum.HumanoidStateType.Jumping then
+		if not doubleJumpEnabled then 
+			wait(.2)
+			if humanoid:GetState() == Enum.HumanoidStateType.Freefall then
+				doubleJumpEnabled = true 
+			end
+		end
+	elseif newState == Enum.HumanoidStateType.Landed then	
+		doubleJumpEnabled = false
+	end
+end)
+ 
+UserInputService.InputBegan:Connect(function(inputObject)
+	if inputObject.KeyCode == Enum.KeyCode.Space then
+		if doubleJumpEnabled then
+			if humanoid:GetState() ~= Enum.HumanoidStateType.Jumping then
+				humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+				spawn(function()
+					doubleJumpEnabled = false 
+				end)
+			end
+		end		
+	end
+end)
