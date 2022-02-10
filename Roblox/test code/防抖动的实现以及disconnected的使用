@@ -1,0 +1,73 @@
+local part=script.Parent
+local touch = false
+local connection
+
+
+local function hurt(otherpart)
+	local character = otherpart.Parent
+	
+	local human = character:FindFirstChildWhichIsA("Humanoid")
+	
+	
+	
+	if human then
+		
+		
+		if touch == false then
+			touch = true
+			human.Health=human.Health - 10
+			print ("you are on fire")
+			wait(1)
+			touch = false
+			
+		end
+		
+		connection:Disconnect()
+		
+	end
+
+	
+	
+	
+end
+
+
+connection=part.Touched:Connect(hurt)
+part.TouchEnded:Connect(hurt)
+
+
+
+
+
+
+--------------------------------------防抖动api例程--------------------------------------------------
+local buttonPressed = false
+--将按钮是否被按下的状态储存在局部变量中
+ 
+Workspace.Button.Touched:Connect(function(hit)
+    if not buttonPressed then
+    -- 状态是否为“未按下”？
+ 
+        buttonPressed = true
+        -- 若是，则将其标记为“已按下”，防止函数多次运行
+ 
+        print("按钮被按下")
+        wait(1)
+        print("Hi :D")
+        -- 执行操作
+ 
+        buttonPressed = false
+        -- 执行操作后将其标记为“未按下”，以便再次执行函数
+    end
+end)
+
+-------------------------------------------万金油的防抖动算法---------------------------------------
+计数防抖动
+1、每次touched事件计数+1
+2、每次touchedended事件触发计数-1
+当计数＞0的时候就是碰撞状态
+计数等于0就是没有碰撞的状态
+
+
+
+
