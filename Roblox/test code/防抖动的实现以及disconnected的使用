@@ -1,41 +1,31 @@
-local part=script.Parent
-local touch = false
-local connection
+local FIRE = script.Parent
+local TOUCH = false     --防抖动
+local DAMAGE_END = false--监听伤害是否结束
 
-
-local function hurt(otherpart)
-	local character = otherpart.Parent
-	
-	local human = character:FindFirstChildWhichIsA("Humanoid")
-	
-	
-	
-	if human then
-		
-		
-		if touch == false then
-			touch = true
-			human.Health=human.Health - 10
-			print ("you are on fire")
-			wait(1)
-			touch = false
-			
+local function hurt(otherPart)
+	if not TOUCH then
+		TOUCH = true
+		DAMAGE_END = false
+		local humanoid = otherPart.Parent:FindFirstChildWhichIsA("Humanoid")
+		if humanoid then
+			while humanoid.Health > 0 and not DAMAGE_END do
+				humanoid:TakeDamage(5)
+				print("you are on fire")
+				wait(1)
+			end
 		end
-		
-		connection:Disconnect()
-		
 	end
-
-	
-	
-	
 end
 
+local function stop()
+	if TOUCH then
+		DAMAGE_END = true
+		TOUCH = false
+	end
+end
 
-connection=part.Touched:Connect(hurt)
-part.TouchEnded:Connect(hurt)
-
-
+FIRE.Touched:Connect(hurt)
+FIRE.TouchEnded:Connect(stop)
 
 
 
