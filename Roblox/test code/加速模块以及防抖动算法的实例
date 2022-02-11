@@ -1,0 +1,22 @@
+local part = script.Parent
+local touch = false
+
+local function onTouch(otherPart)
+	local character = otherPart.parent
+	local human = character:FindFirstChildWhichIsA ("Humanoid")
+	
+	if human then
+		if not touch then
+			touch=true
+			human.WalkSpeed = 50 
+			print("你踩香蕉皮了！")
+			wait(5)
+			human.WalkSpeed = 16
+			touch=false
+		end
+	end
+end	
+	
+
+
+part.Touched:Connect(onTouch)
