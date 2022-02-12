@@ -1,4 +1,12 @@
+local function makeCake()
+	-- Code for baking cake
+	local cakeId = 5263981648
+	local cake = game:GetService("InsertService"):LoadAsset(cakeId) --可以拆成12 13行所示，目的是减少一个参数
+	cake.Parent = workspace
+	return cake
+end
 
+-----------------------------------------------------------------------------
 --LoadAsset 函数，根据其 ID 取回一个资源，并返回一个包含此资源的 Model
 local assetId = 257489726
 local InsertService = game:GetService("InsertService")
