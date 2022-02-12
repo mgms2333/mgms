@@ -1,0 +1,11 @@
+local function getWinRate()
+	local wins = 4
+	local losses = 0
+	local ties = 1
+	return wins, losses, ties
+end
+ 
+local myWins, myLosses, myTies = getWinRate()
+print("Your wins, losses, and ties are: " .. myWins .. " , " .. myLosses .. " , " .. myTies)
+----------输出结果就是 "Your wins, losses, and ties are4，0，1
+程序local了三个变量，然后将三个变量数字传给函数字符串变量，字符串变量的输出格式是..字符串..
