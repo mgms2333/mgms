@@ -1,0 +1,36 @@
+--初始化，把需要的东东西西都定义好
+local lightPart = script.Parent
+local light = game.Workspace.lightPart.PointLight
+
+
+--设置全局变量，方便直接修改变化速度和强度
+local lightchange = 0.2
+local timechange = 0.1
+
+
+
+--函数体
+local function changelight()
+	--采用两个并列for循环外套一个while循环的结构
+	
+	while true do
+		
+--灯从0亮度到8亮度
+		for count = 0 , 8, lightchange do
+			light.Brightness = count
+			wait(timechange)
+		end
+
+--灯从8亮度到0亮度
+		for count = 10 , 0 ,-lightchange do
+			light.Brightness   = count
+			wait(timechange)
+		end
+
+
+	end
+
+end
+
+
+changelight()
