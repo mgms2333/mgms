@@ -1,0 +1,17 @@
+
+--LoadAsset 函数，根据其 ID 取回一个资源，并返回一个包含此资源的 Model
+local assetId = 257489726
+local InsertService = game:GetService("InsertService")
+local model = InsertService:LoadAsset(assetId)
+model.Parent = workspace
+----------------------------------------------------------------------------------
+--如果提供模型的服务器出现问题，调用此函数可能会失败。因此，最好将此函数的调用嵌套在 pcall 中来捕获此类错误。
+local assetId = 257489726
+local InsertService = game:GetService("InsertService") --请求插入服务
+local success, model = pcall(InsertService.LoadAsset, InsertService, assetId)
+if success and model then
+   print("模型加载成功！")
+   model.Parent = workspace
+else
+   print("模型加载失败！")
+end
