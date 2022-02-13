@@ -1,0 +1,21 @@
+--需要更新玩家的排行榜数据时，只需变更其 leaderstats 文件夹中对应数据的 Value（值）属性即可，以下 Script添加至任何可拾取对象中后，当玩家收集此物品时将会增加其 Gold（金币）数据：
+local Players = game:GetService("Players")
+ 
+local goldChunk = script.Parent
+ 
+local function onPartTouch(otherPart)
+	local partParent = otherPart.Parent
+	local humanoid = partParent:FindFirstChildWhichIsA("Humanoid")
+	if humanoid then
+		-- 销毁拾取道具
+		goldChunk:Destroy()
+		-- 更新玩家的排行榜数据
+		local player = Players:GetPlayerFromCharacter(partParent)
+		local leaderstats = player.leaderstats
+		local goldStat = leaderstats and leaderstats:FindFirstChild("Gold")
+		if goldStat then
+			goldStat.Value = goldStat.Value + 10
+		end
+	end
+end
+goldChunk.Touched:Connect(onPartTouch)
