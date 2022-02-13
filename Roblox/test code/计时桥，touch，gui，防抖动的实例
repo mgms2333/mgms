@@ -1,0 +1,38 @@
+---------------初始化-----------------------
+local Bridge = script.Parent.Parent
+local Button = script.Parent
+local txtBox = Bridge.txtBox.SurfaceGui.TextLabel
+local txtPart = txtBox.Parent.Parent
+local timeofbridge = 5
+local touched = false--防抖动
+
+----第一个函数，用于控制桥的transparency和cancollide，显示txt等等，主函数
+local function counttime()
+	Bridge.Transparency = 0
+	Bridge.CanCollide = true
+	for count =timeofbridge ,0 ,-1 do
+		txtBox.Text = count	
+		wait(1)
+	end
+	Bridge.Transparency = 0.8
+	Bridge.CanCollide = false
+	txtBox.Text = ""
+end
+------第二个函数，用于调动主函数和防抖动
+local function Touch(otherpart)
+	local human = otherpart.parent:FindFirstChildWhichIsA("Humanoid")
+	
+	if human then
+		
+		if not touched then
+				print ("begining")
+				touched = true
+				counttime()			
+				touched = false
+
+		end
+		
+	end	
+end
+
+Button.Touched:Connect(Touch)
