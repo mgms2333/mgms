@@ -1,0 +1,59 @@
+--------------------初始化------------------------
+local finishPart = script.Parent.Parent.finishPart
+local beginPart = script.Parent
+local timePassed = 0
+local raceActive = false--防抖动初值为fales
+--------------------终点线初始化------------------
+finishPart.CanTouch = false
+finishPart.Transparency = 1
+
+-----完成赛跑后的函数
+local function finish()
+	if  raceActive then
+		print("You finished in " .. timePassed.." second")
+		if timePassed <= 10 then
+			print("You get a gold medal in "..timePassed)
+		elseif timePassed > 10 and timePassed <= 20 then
+			print("You get a silver medal in "..timePassed)
+		elseif  timePassed > 20 and timePassed <= 30 then
+			print("You get a bronze medal in "..timePassed)
+		else
+			print("Try again!")
+		end
+		
+
+		end
+end
+
+---------按下开始按钮之后的函数，添加了一个计数器，每秒加一并自我打印。全局使用了一个防抖动raceactive，可以兼容计时器的开始结束监听功能-------------
+local function begin(otherpart)
+	local human = otherpart.parent:FindFirstChildWhichIsA("Humanoid")
+	if human and not raceActive  then
+		raceActive = true-------------------此时raceactive已经置true了，race已经开始
+		print ("the race begins")
+		finishPart.CanTouch = true
+		finishPart.Transparency = 0--开始之后把终点线置正常
+		while raceActive == true do--只当raceactive为true时，才会开始计数，触碰到终点线即停止计数
+			wait(1)	
+			timePassed = timePassed +1
+			print  (timePassed)
+		end
+		
+	end	
+	
+	
+end
+
+--第二个函数，触碰到终点线时的函数，前段也是判断人物，后段调用结束后的函数（嵌套调用）
+local function race(otherpart2)
+	local human2 = otherpart2.parent:FindFirstChildWhichIsA("Humanoid")
+	if human2 and raceActive then
+		finish()--调用finish函数
+		raceActive = false--raceactive置false防抖动，同时结束计数器计数。当然这句代码也能加入到finish函数里面
+		
+	end
+	
+end
+
+beginPart.Touched:Connect(begin)
+finishPart.Touched:Connect(race)--将两个触碰事件和两个函数连接起来
