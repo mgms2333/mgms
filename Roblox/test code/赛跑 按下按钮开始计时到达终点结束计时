@@ -20,7 +20,8 @@ local function finish()
 		else
 			print("Try again!")
 		end
-		
+		finishPart.CanTouch = false
+                finishPart.Transparency = 1
 
 		end
 end
