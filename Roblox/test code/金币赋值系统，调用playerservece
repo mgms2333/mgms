@@ -1,0 +1,73 @@
+------------------part部分----------------------------
+local pointPart = script.Parent
+local blue = Color3.fromRGB(0, 0, 255)
+local green = Color3.fromRGB(0, 255, 0)
+local red = Color3.fromRGB(255 ,0, 0)
+-- Points values 
+local smallPoints = 10
+local largePoints = 50
+local losePoints = 100
+local Players = game:GetService("Players")
+---给分函数
+local function givingPoints (player)
+	local findColor = pointPart.Color
+	local playerStats = player:WaitForChild("leaderstats")
+	local playerPoints = playerStats:WaitForChild("GOLD")
+	if findColor == blue then
+		playerPoints.value = playerPoints.Value + smallPoints
+	elseif findColor == green then
+		playerPoints.Value = playerPoints.Value + largePoints
+	else
+		playerPoints.Value = playerPoints.Value - losePoints
+	end
+	pointPart:Destroy()	
+	local particle = Instance.new("ParticleEmitter")--插入一个粒子发射器实例
+	particle.Color =  ColorSequence.new(findColor)--粒子发射器的颜色序列
+	local playerCharater = player.character
+	particle.Parent = playerCharater:WaitForChild("Head")
+	wait(2)
+	particle:Destroy()
+end
+--碰撞函数
+local function partTouch (otherPart)
+	local players = Players:GetPlayerFromCharacter(otherPart.Parent)
+	if players then
+			print ("you broke an object")
+			givingPoints(players)	
+		end
+	end
+
+pointPart.Touched:Connect(partTouch)	
+--变色函数
+local function colorChange()
+	while true do
+		pointPart.Color=blue
+		wait(1)
+		pointPart.Color=green
+		wait(1)
+		pointPart.Color=red
+		wait(1)
+	end
+	
+end
+colorChange()
+
+
+--------------------------ServerScriptService部分--------------
+--创建排行榜，排行榜功能是roblox自带的，其中特定名词为leaderstats
+
+local function leaderstatsSetup (player)
+	local leaderstats = Instance.new("Folder")--插入一个新的文件夹folder，将其命名为leaderstats，将其父节点定为player
+	leaderstats.Name = "leaderstats"
+	leaderstats.Parent = player
+	
+	local gold = Instance.new("IntValue")
+	gold.Name = "GOLD" 
+	gold.Parent = leaderstats
+	gold.Value = 0
+	
+	
+	
+end
+
+game.Players.PlayerAdded:Connect(leaderstatsSetup)--每当有玩家加入的时候，触发创建排行榜的事件
