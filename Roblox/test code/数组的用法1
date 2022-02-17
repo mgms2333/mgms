@@ -1,0 +1,20 @@
+local Chat = game:GetService("Chat")
+
+local npc = script.Parent
+local characterParts = npc.CharacterParts
+local head = characterParts.Head
+local clickDetector = npc.ClickDetector
+
+--Add table below
+local dialogueArray= {"Hey i know you sun of bitch!", "hello motherfucker", "oh fuck Jesus fuck!!"}
+local dialogueIndex = 1
+local function speak()
+	local dialogue = dialogueArray[dialogueIndex]
+	Chat:Chat(head, dialogue)	
+	if dialogueIndex ==#dialogueArray then
+		dialogueIndex = 1
+	else dialogueIndex = dialogueIndex + 1
+		end
+end
+
+clickDetector.MouseClick:Connect(speak)
