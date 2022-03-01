@@ -1,0 +1,25 @@
+local Arrary = {}
+
+table.insert(Arrary,"name")
+table.insert(Arrary,"year")
+table.insert(Arrary,"sex")
+table.insert(Arrary,"lenth")
+table.insert(Arrary,"height")
+table.remove(Arrary,5)
+
+
+local function findName(whichArray,nameofThing)
+	for index=1,#whichArray do		
+		if whichArray[index] == nameofThing then
+			return index
+		else 
+			print("There is no such a member")
+		end
+	end
+	
+end
+
+
+local word = "sex"
+local valueFound = findName(Arrary,word)
+print("the value of "..word.." is "..valueFound)
