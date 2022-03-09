@@ -1,0 +1,35 @@
+
+local players = game:GetService("Players")
+
+
+local playerPoint = 
+{
+		
+		
+}
+
+local function setPoint(newplayer)
+	local name = newplayer.Name
+	local character=newplayer.CharacterAdded:Connect(function(character)	
+		local hp = newplayer.character.Humanoid.Health
+		playerPoint[name] = 0
+		while hp > 0 do
+			hp-=11
+			playerPoint[hp] = hp
+			print(name.." has "..playerPoint[name].." points and "..playerPoint[hp].."hp")
+			newplayer.character.Humanoid:TakeDamage(11)
+			wait (1)
+		end
+
+	end)
+	
+	
+	--playerPoint[hp] = 100
+	--while true  do
+	--	playerPoint[hp] = playerPoint[hp] - 10
+	--	wait(1)
+	end
+
+
+players.PlayerAdded:Connect(setPoint)
+
