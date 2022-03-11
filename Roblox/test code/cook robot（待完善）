@@ -1,0 +1,72 @@
+local Chat = game:GetService("Chat")
+
+local npc = script.Parent
+local characterParts = npc.CharacterParts
+local head = characterParts.Head
+local clickDetector = npc.ClickDetector
+
+local menu =
+	{
+		meats = true,
+		cabbages = false,
+		["chocolate sause"] = false,
+		eggs = false,
+		eggplants = false,
+		salt = false		
+	}
+--新建一个空的数组，用于储存取出的材料
+local catched =
+	{
+
+	}
+local output=
+	{
+
+	}
+--新建一个字典，用于储存现有材料
+
+--pairs 和 ipairs用法的区别
+--pairs用于取字典，for key,value in pairs() do
+--ipairs用于取数组, for index ,value in pairs() do
+for choice , value in pairs(menu) do
+	if  value then
+		table.insert(catched,choice)
+	end
+end
+--检查函数
+if #catched > 0  then
+	for i,v in ipairs(catched) do
+		 dialogue1 = ("your order contains "..v)
+	end
+	local num = 0
+	for k,v in pairs(menu)  do
+		if not v then
+			num+=1
+		end
+		for index=1,num do
+			output[index] = k
+		end
+	end
+	for i,v in ipairs(output) do
+	dialogue2 = ("There are "..v.." left")
+	end
+end
+
+	local dialogueArray =
+	{	
+	}
+table.insert(dialogueArray,dialogue1)
+table.insert(dialogueArray,dialogue2)
+
+local dialogueIndex = 1
+local function speak()
+	local dialogue = dialogueArray[dialogueIndex]
+	Chat:Chat(head,dialogue)
+	if dialogueIndex == #dialogueArray  then
+		dialogueIndex = 1
+	else
+		dialogueIndex += 1
+	end	
+end
+
+clickDetector.MouseClick:Connect(speak)
