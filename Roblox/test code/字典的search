@@ -1,15 +1,46 @@
-local shipToFind = "Void Racer"
-local waitingShips = {"Battle Sun", "Void Racer", "The Big Slow"}
+--local shipToFind = "Void Racer"
+--local waitingShips = {"Battle Sun", "Void Racer", "The Big Slow"}
 
--- Get place in line
-local function getPlaceInLine(shipName)
-	for placeInLine,ship in ipairs(waitingShips) do
-		if ship == shipName then
-			return placeInLine
+---- Get place in line
+--local function getPlaceInLine(shipName)
+--	for placeInLine,ship in ipairs(waitingShips) do
+--		if ship == shipName then
+--			return placeInLine
+--		end
+--	end
+--end
+
+----Print place in line
+--local placeInLine = getPlaceInLine(shipToFind)  
+--print("Your place in line is " .. placeInLine)
+
+
+local house = 
+	{
+	kitchen = "pile of Junk",
+	["living room"] = "kitten",
+	bedroom1 = "nobody there",
+	bedroom2 = "puppy",
+	}
+--local nameofpet = "puppy"
+--local function SearchPet(petname)
+--	for place,name in pairs(house) do
+--		if name == petname then
+--			return place
+--		end
+--	end
+--end
+
+--local place = SearchPet(nameofpet)
+--print("your pet is in "..place)
+local function findPet(whereToSearch,searchFor)
+	for place, value in pairs(whereToSearch) do
+		if value == searchFor then
+			return place
 		end
 	end
 end
+local place = findPet(house,"puppy")
 
---Print place in line
-local placeInLine = getPlaceInLine(shipToFind)  
-print("Your place in line is " .. placeInLine)
+
+print(place)
