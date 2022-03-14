@@ -1,0 +1,15 @@
+local shipToFind = "Void Racer"
+local waitingShips = {"Battle Sun", "Void Racer", "The Big Slow"}
+
+-- Get place in line
+local function getPlaceInLine(shipName)
+	for placeInLine,ship in ipairs(waitingShips) do
+		if ship == shipName then
+			return placeInLine
+		end
+	end
+end
+
+--Print place in line
+local placeInLine = getPlaceInLine(shipToFind)  
+print("Your place in line is " .. placeInLine)
